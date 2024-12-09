@@ -63,19 +63,18 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var yeah = new FlxBackdrop(Paths.image('fondostory'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		yeah.setPosition(0, 0);
-		yeah.antialiasing = true;
+		var yeah = new FlxTiledSprite(Paths.image('fondostory'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
+		yeah.x = 0;
+		yeah.y = 0;
+		yeah.antialiasing = false;
 		yeah.scrollFactor.set();
-		yeah.color = 0xFFA09ca6;
 		add(yeah);
-		yeah.velocity.set(0, 0);
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('cuadrakite'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		bg.setPosition(0, 0);
+		var bg:FlxTiledSprite = new FlxTiledSprite(Paths.image('cuadrakite'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
+		bg.x = 0;
+		bg.y = 0;
 		bg.antialiasing = true;
 		bg.scrollFactor.set();
-		bg.velocity.set(20, 0);
 		bg.antialiasing = FlxG.save.data.antialiasing;
 		bg.color = 0xFFA09ca6;
 		add(bg);
@@ -156,6 +155,9 @@ class MainMenuState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+		
+		yeah.scrollX += 1 * 25 * elapsed;
+		bg.scrollX += 1 * 40 * elapsed;
 
 		if (!selectedSomethin)
 		{

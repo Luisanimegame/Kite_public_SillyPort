@@ -1,6 +1,6 @@
 package;
 
-import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxTiledSprite;
 import flixel.tweens.FlxEase;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.FlxG;
@@ -132,19 +132,19 @@ class StoryMenuState extends MusicBeatState
 		var blackBarThingie:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, 56, FlxColor.BLACK);
 		//add(blackBarThingie);
 
-		var yeah = new FlxBackdrop(Paths.image('fondostory'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		yeah.setPosition(0, 0);
-		yeah.antialiasing = true;
+		var yeah = new FlxTiledSprite(Paths.image('fondostory'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
+		yeah.x = 0;
+		yeah.y = 0;
+		yeah.antialiasing = false;
 		yeah.scrollFactor.set();
 		add(yeah);
-		yeah.velocity.set(0, 0);
-
-		var yeah2 = new FlxBackdrop(Paths.image('cuadrakite'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		yeah2.setPosition(0, 0);
-		yeah2.antialiasing = true;
+		
+		var yeah2 = new FlxTiledSprite(Paths.image('cuadrakite'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
+		yeah2.x = 0;
+		yeah2.y = 0;
+		yeah2.antialiasing = false;
 		yeah2.scrollFactor.set();
 		add(yeah2);
-		yeah2.velocity.set(40, 0);
 
 		add(kite);
 		grpWeekCharacters = new FlxTypedGroup<MenuCharacter>();
@@ -265,6 +265,9 @@ class StoryMenuState extends MusicBeatState
 		txtWeekTitle.x = FlxG.width - (txtWeekTitle.width + 10);
 
 		// FlxG.watch.addQuick('font', scoreText.font);
+		
+		yeah2_top.scrollX += 1 * 40 * elapsed;
+		yeah.scrollX += 1 * 25 * elapsed;
 
 		difficultySelectors.visible = weekUnlocked[curWeek];
 

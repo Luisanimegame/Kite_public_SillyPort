@@ -1,5 +1,5 @@
 package;
-import flixel.addons.display.FlxBackdrop;
+import flixel.addons.display.FlxTiledSprite;
 import lime.app.Application;
 import openfl.utils.Future;
 import openfl.media.Sound;
@@ -180,19 +180,17 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var yeah = new FlxBackdrop(Paths.image('fondostory'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		yeah.setPosition(0, 0);
-		yeah.antialiasing = true;
+		var yeah = new FlxTiledSprite(Paths.image('fondostory'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
+		yeah.x = 0;
+		yeah.y = 0;
+		yeah.antialiasing = false;
 		yeah.scrollFactor.set();
 		yeah.color = 0xFF9271fd;
 		add(yeah);
-		yeah.velocity.set(0, 0);
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('cuadrakite'), 0, 0, true, true); // backgrounds are the only hardcoded thing sorry :(
-		bg.setPosition(0, 0);
+		var bg:FlxTiledSprite = new FlxTiledSprite(Paths.image('cuadrakite'), FlxG.width * 3, FlxG.width * 3, true, true); // backgrounds are the only hardcoded thing sorry :(
 		bg.antialiasing = true;
 		bg.scrollFactor.set();
-		bg.velocity.set(20, 0);
 		bg.antialiasing = FlxG.save.data.antialiasing;
 		bg.color = 0xFF9271fd;
 		add(bg);
@@ -311,6 +309,9 @@ class FreeplayState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
+
+		yeah.scrollX += 1 * 25 * elapsed;
+		bg.scrollX += 1 * 35 * elapsed;
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.4));
 
